@@ -165,3 +165,18 @@
 > - appId: the single most relevant app id, such as "sites", "pets", "codex-document-control", "hotline", "plugin-management", "safety-settings", or "search-service". Choose the one app most central to the suggestion.
 > - pluginId: null.
 > - write the prompt as something that should launch as a new Codex task in this project
+
+**18:39 · codex**
+
+> Implement only the Dog CEO API data-layer task from tasks.md.
+> 
+> Create a typed module at src/api/dogApi.ts. It must use the public Dog CEO endpoints:
+> - https://dog.ceo/api/breeds/list/all
+> - https://dog.ceo/api/breed/{breed}/images/random
+> 
+> Model only main breeds for the gallery. Expose a function that fetches and returns main breeds alphabetically, including each breed's sub-breeds, and a separate function that fetches one image URL for a main breed.
+> 
+> Use TypeScript types with no any. Handle a non-success API response and network failures with clear errors. Do not modify React components, routes, styling, tests, or any other features. Update only this completed task in tasks.md. Do not commit. Run lint and summarize the result.
+**21:01 · tomer**
+
+> I checked that the project builds successfully after adding the Dog CEO API data layer. The production build completed without errors.

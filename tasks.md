@@ -3,7 +3,7 @@
 - [x] Initialize React + Vite + TypeScript.
 - [x] Write `PRD.md`.
 - [x] Add React Router routes for the gallery, breed detail pages, and favorites page.
-- [ ] Define Dog CEO API types and implement breed data and image fetching.
+- [x] Define Dog CEO API types and implement breed data and image fetching.
 - [ ] Build the site logo, short About section, alphabetically sorted image-first breed gallery, and breed search.
 - [ ] Implement the favorite heart toggle, favorites page, and breed details.
 - [ ] Style the gallery with the fixed `#FFF7ED` background, responsive layout, and accessible interactions.
