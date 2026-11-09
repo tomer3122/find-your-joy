@@ -17,3 +17,11 @@
 > Include: the app purpose, target users, and only these confirmed features: site logo, breed search, a short About section, an alphabetically sorted gallery, a fixed warm cream gallery background (#FFF7ED), image-first breed cards, a favorite heart toggle, responsive layout, a breed detail page, and a favorites page.
 > 
 > Include these constraints: React + Vite + TypeScript, React Router, the public keyless Dog CEO API, no any, and accessibility. Do not add unconfirmed features. After creating the file, summarize what you wrote.
+
+**17:43 · codex**
+
+> Create a concise tasks.md based only on PRD.md and the current project state. Do not modify application code, PRD.md, README.md, or any other files.
+> 
+> Use a short Markdown checkbox checklist in dependency order. Mark only these as completed: initializing React + Vite + TypeScript, and writing PRD.md.
+> 
+> Include future tasks for routing, Dog CEO API types and fetching, gallery and search, favorites and breed details, styling and responsiveness, at least five meaningful Vitest tests, README, and final validation. Do not add unconfirmed features. Then summarize the file.
