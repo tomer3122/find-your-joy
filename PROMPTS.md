@@ -617,3 +617,16 @@
 **18:31 · tomer**
 
 > I checked the home, breed details, and favorites pages. The global header appears on all pages, the logo returns home, and duplicate page links were removed.
+
+## 2026-11-15
+
+**18:53 · codex**
+
+> Implement only the first data-display slice of the home page. Inspect src/api/dogApi.ts and use its existing breed-fetching function in HomePage.
+> 
+> Fetch the main breeds once when the home page loads. Render accessible loading, error, and successful states. On success, display the alphabetically sorted main breed names in a simple text list below the About section.
+> 
+> Do not add images, cards, search, favorites, detail links, styling beyond what is needed for readable states, or any new features. Do not update tasks.md or commit. Do not use any. Run lint and summarize the change.
+**20:10 · tomer**
+
+> I checked that the Dog CEO API loads 108 main breeds in alphabetical order on the home page. The other pages did not change.
