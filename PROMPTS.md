@@ -929,3 +929,6 @@
 **18:28 · tomer**
 
 > I checked breed search with “poodle” and a non-matching search. Cards stay centered at a fixed maximum size, and the no-results message appears correctly.
+**19:08 · tomer**
+
+> I adjusted the gallery grid alignment myself. Cards now align to the left while their text stays centered. I checked the layout in the browser and prefer it.
