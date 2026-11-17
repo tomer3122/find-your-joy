@@ -8,7 +8,14 @@ export function HomePage() {
   const [breeds, setBreeds] = useState<MainBreed[] | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState('')
   const requestRef = useRef<Promise<MainBreed[]> | null>(null)
+
+  const normalizedSearchQuery = searchQuery.trim().toLowerCase()
+  const filteredBreeds = (breeds ?? []).filter((breed) =>
+    breed.name.toLowerCase().includes(normalizedSearchQuery),
+  )
+  const matchingBreedNames = new Set(filteredBreeds.map((breed) => breed.name))
 
   useEffect(() => {
     let isActive = true
@@ -47,10 +54,32 @@ export function HomePage() {
         {!isLoading && error && <p role="alert">Unable to load breeds: {error}</p>}
         {!isLoading && !error && breeds && (
           <>
-            <p role="status">{breeds.length} breeds loaded.</p>
+            <label className="breed-gallery__search-label" htmlFor="breed-search">
+              Search breeds
+            </label>
+            <input
+              className="breed-gallery__search-input"
+              id="breed-search"
+              type="search"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+            />
+            {filteredBreeds.length === 0 ? (
+              <p role="status">
+                {normalizedSearchQuery
+                  ? `No breeds match “${searchQuery}”.`
+                  : 'No breeds available.'}
+              </p>
+            ) : (
+              <p role="status">
+                {normalizedSearchQuery
+                  ? `${filteredBreeds.length} breeds match your search.`
+                  : `${breeds.length} breeds loaded.`}
+              </p>
+            )}
             <ul className="breed-gallery__grid">
               {breeds.map((breed) => (
-                <li key={breed.name}>
+                <li key={breed.name} hidden={!matchingBreedNames.has(breed.name)}>
                   <BreedCard breedName={breed.name} />
                 </li>
               ))}

@@ -910,3 +910,22 @@
 > - appId: the single most relevant app id, such as "sites", "pets", "codex-document-control", "hotline", "plugin-management", "safety-settings", or "search-service". Choose the one app most central to the suggestion.
 > - pluginId: null.
 > - write the prompt as something that should launch as a new Codex task in this project
+
+**17:56 · codex**
+
+> Implement only breed search on the home page.
+> 
+> Add a controlled, accessible search input labeled "Search breeds". Filter the already loaded main breeds by a case-insensitive partial match, while preserving alphabetical order. The BreedCard grid must update as the user types. Show a clear, accessible message when no breeds match.
+> 
+> Do not make additional API calls, add favorites, change routing, or change the other pages. Keep the existing card and header styling consistent. Since this completes the existing logo/About/gallery/search task, mark only that task as complete in tasks.md. Do not commit. Do not use any. Run lint and summarize the change.
+
+**18:18 · codex**
+
+> Fix only the responsive BreedCard gallery sizing. A single search result must not stretch across the full page.
+> 
+> Use centered grid columns with a fixed maximum card width, around 280px, while keeping the layout responsive for many cards. Ensure each card fills only its own grid column and its image keeps a consistent card-sized aspect ratio with object-fit: cover.
+> 
+> Do not change search logic, API calls, routes, tasks.md, or other functionality. Do not commit. Run lint and summarize the change.
+**18:28 · tomer**
+
+> I checked breed search with “poodle” and a non-matching search. Cards stay centered at a fixed maximum size, and the no-results message appears correctly.
