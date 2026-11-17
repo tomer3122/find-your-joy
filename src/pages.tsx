@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchMainBreeds, type MainBreed } from './api/dogApi'
 import { AboutSection } from './components/AboutSection'
+import { BreedCard } from './components/BreedCard'
 
 export function HomePage() {
   const [breeds, setBreeds] = useState<MainBreed[] | null>(null)
@@ -47,9 +48,11 @@ export function HomePage() {
         {!isLoading && !error && breeds && (
           <>
             <p role="status">{breeds.length} breeds loaded.</p>
-            <ul>
+            <ul className="breed-gallery__grid">
               {breeds.map((breed) => (
-                <li key={breed.name}>{breed.name}</li>
+                <li key={breed.name}>
+                  <BreedCard breedName={breed.name} />
+                </li>
               ))}
             </ul>
           </>
