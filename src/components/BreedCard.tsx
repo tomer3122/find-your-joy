@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { fetchMainBreedImage } from '../api/dogApi'
+import { useFavorites } from '../useFavorites'
 import './BreedCard.css'
 
 interface BreedCardProps {
@@ -17,6 +18,8 @@ interface ImageRequest {
 }
 
 export function BreedCard({ breedName }: BreedCardProps) {
+  const { favoriteBreedNames, toggleFavorite } = useFavorites()
+  const isFavorite = favoriteBreedNames.includes(breedName)
   const [imageState, setImageState] = useState<ImageState>({ breedName, status: 'loading' })
   const requestRef = useRef<ImageRequest | null>(null)
   const visibleImageState: ImageState =
@@ -73,6 +76,19 @@ export function BreedCard({ breedName }: BreedCardProps) {
             onError={() => setImageState({ breedName, status: 'error' })}
           />
         )}
+        <button
+          className="breed-card__favorite"
+          type="button"
+          aria-label={
+            isFavorite
+              ? `Remove ${breedName} from favorites`
+              : `Add ${breedName} to favorites`
+          }
+          aria-pressed={isFavorite}
+          onClick={() => toggleFavorite(breedName)}
+        >
+          <span aria-hidden="true">{isFavorite ? '♥' : '♡'}</span>
+        </button>
       </div>
       <h3 className="breed-card__name" id={`breed-card-${breedName}`}>
         {breedName}
