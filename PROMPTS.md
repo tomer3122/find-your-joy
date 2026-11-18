@@ -1082,3 +1082,16 @@
 > - appId: the single most relevant app id, such as "sites", "pets", "codex-document-control", "hotline", "plugin-management", "safety-settings", or "search-service". Choose the one app most central to the suggestion.
 > - pluginId: null.
 > - write the prompt as something that should launch as a new Codex task in this project
+
+**22:02 · codex**
+
+> Implement only the Favorites page content.
+> 
+> Use the existing favorites hook/context to display the user’s saved breed names on the /favorites page. Reuse the existing BreedCard component so each saved breed has an image and the same heart button, allowing the user to remove it from favorites.
+> 
+> Show a clear, accessible empty state when there are no saved breeds.
+> 
+> Do not change the breed detail page, routes, search, tasks.md, or other features. Do not commit. Do not use any. Run npm.cmd run lint and summarize the change.
+**22:07 · tomer**
+
+> I tested the Favorites page: saved breeds appear there, and removing a heart updates the list immediately.

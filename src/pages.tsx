@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { fetchMainBreeds, type MainBreed } from './api/dogApi'
 import { AboutSection } from './components/AboutSection'
 import { BreedCard } from './components/BreedCard'
+import { useFavorites } from './useFavorites'
 
 export function HomePage() {
   const [breeds, setBreeds] = useState<MainBreed[] | null>(null)
@@ -103,9 +104,24 @@ export function BreedDetailPage() {
 }
 
 export function FavoritesPage() {
+  const { favoriteBreedNames } = useFavorites()
+
   return (
     <main>
-      <h1>Favorites</h1>
+      <section aria-labelledby="favorites-heading">
+        <h1 id="favorites-heading">Favorites</h1>
+        {favoriteBreedNames.length === 0 ? (
+          <p role="status">You haven’t saved any breeds yet.</p>
+        ) : (
+          <ul className="breed-gallery__grid">
+            {favoriteBreedNames.map((breedName) => (
+              <li key={breedName}>
+                <BreedCard breedName={breedName} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </main>
   )
 }
