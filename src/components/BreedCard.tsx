@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { fetchMainBreedImage } from '../api/dogApi'
 import { useFavorites } from '../useFavorites'
 import './BreedCard.css'
@@ -53,46 +54,52 @@ export function BreedCard({ breedName }: BreedCardProps) {
 
   return (
     <article className="breed-card" aria-labelledby={`breed-card-${breedName}`}>
-      <div className="breed-card__image-frame" aria-busy={visibleImageState.status === 'loading'}>
-        {visibleImageState.status === 'loading' && (
-          <p className="breed-card__image-message" role="status">
-            Loading {breedName} image…
-          </p>
-        )}
-        {visibleImageState.status === 'error' && (
-          <div
-            className="breed-card__image-message"
-            role="img"
-            aria-label={`Image unavailable for ${breedName}`}
-          >
-            Image unavailable
-          </div>
-        )}
-        {visibleImageState.status === 'loaded' && (
-          <img
-            className="breed-card__image"
-            src={visibleImageState.url}
-            alt={`${breedName} dog`}
-            onError={() => setImageState({ breedName, status: 'error' })}
-          />
-        )}
-        <button
-          className="breed-card__favorite"
-          type="button"
-          aria-label={
-            isFavorite
-              ? `Remove ${breedName} from favorites`
-              : `Add ${breedName} to favorites`
-          }
-          aria-pressed={isFavorite}
-          onClick={() => toggleFavorite(breedName)}
-        >
-          <span aria-hidden="true">{isFavorite ? '♥' : '♡'}</span>
-        </button>
-      </div>
-      <h3 className="breed-card__name" id={`breed-card-${breedName}`}>
-        {breedName}
-      </h3>
+      <Link
+        className="breed-card__details"
+        to={`/breed/${encodeURIComponent(breedName)}`}
+        aria-label={`View ${breedName} breed details`}
+      >
+        <div className="breed-card__image-frame" aria-busy={visibleImageState.status === 'loading'}>
+          {visibleImageState.status === 'loading' && (
+            <p className="breed-card__image-message" role="status">
+              Loading {breedName} image…
+            </p>
+          )}
+          {visibleImageState.status === 'error' && (
+            <div
+              className="breed-card__image-message"
+              role="img"
+              aria-label={`Image unavailable for ${breedName}`}
+            >
+              Image unavailable
+            </div>
+          )}
+          {visibleImageState.status === 'loaded' && (
+            <img
+              className="breed-card__image"
+              src={visibleImageState.url}
+              alt={`${breedName} dog`}
+              onError={() => setImageState({ breedName, status: 'error' })}
+            />
+          )}
+        </div>
+        <h3 className="breed-card__name" id={`breed-card-${breedName}`}>
+          {breedName}
+        </h3>
+      </Link>
+      <button
+        className="breed-card__favorite"
+        type="button"
+        aria-label={
+          isFavorite
+            ? `Remove ${breedName} from favorites`
+            : `Add ${breedName} to favorites`
+        }
+        aria-pressed={isFavorite}
+        onClick={() => toggleFavorite(breedName)}
+      >
+        <span aria-hidden="true">{isFavorite ? '♥' : '♡'}</span>
+      </button>
     </article>
   )
 }

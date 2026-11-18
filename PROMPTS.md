@@ -1095,3 +1095,16 @@
 **22:07 · tomer**
 
 > I tested the Favorites page: saved breeds appear there, and removing a heart updates the list immediately.
+
+## 2026-11-18
+
+**22:41 · codex**
+
+> Implement only breed-card navigation.
+> 
+> Make the image-and-name area of every BreedCard a React Router Link to /breed/<breed-name>, using the actual breed name. Keep the favorite heart as a separate button, not inside the link.
+> 
+> Add an accessible link label that identifies the breed details. Do not change the BreedDetailPage content, Favorites page, search, tasks.md, or other features. Do not commit. Do not use any. Run npm.cmd run lint and summarize the change.
+**22:44 · tomer**
+
+> I verified that clicking a breed card opens its matching details route, for example Akita opens `/breed/akita`.

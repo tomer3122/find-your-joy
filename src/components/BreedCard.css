@@ -9,6 +9,7 @@
 }
 
 .breed-card {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -18,8 +19,19 @@
   background: var(--bg);
 }
 
+.breed-card__details {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.breed-card__details:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}
+
 .breed-card__image-frame {
-  position: relative;
   display: grid;
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -29,6 +41,7 @@
 
 .breed-card__favorite {
   position: absolute;
+  z-index: 1;
   inset-block-start: 0.65rem;
   inset-inline-end: 0.65rem;
   display: grid;
