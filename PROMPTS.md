@@ -1123,3 +1123,17 @@
 **23:26 · tomer**
 
 > I verified that the Akita detail page shows its name, an image, and a working favorite button.
+## 2026-11-19
+
+**20:16 · codex**
+
+> Implement only the “Last viewed breed” navigation behavior.
+> 
+> Create a typed, reactive way to store one last viewed breed name in localStorage. When BreedDetailPage successfully receives a breed name from the route, save it as the last viewed breed.
+> 
+> In SiteHeader, replace the hard-coded “Breed detail” link to Poodle with a “Last viewed breed” link that navigates to the saved breed’s details route. Hide this link when no breed has been viewed yet. Keep the logo Home link and Favorites link unchanged.
+> 
+> The header must update immediately after visiting a breed, and the last viewed breed must still be available after a refresh. Do not change Favorites behavior, BreedCard, search, tasks.md, or unrelated features. Do not commit. Do not use any. Run npm.cmd run lint and summarize the change.
+**20:44 · tomer**
+
+> I verified that Last viewed breed returns from Favorites to the most recently opened breed.

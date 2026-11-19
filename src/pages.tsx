@@ -5,6 +5,7 @@ import { AboutSection } from './components/AboutSection'
 import { BreedCard } from './components/BreedCard'
 import { useFavorites } from './useFavorites'
 import { fetchMainBreedImage } from './api/dogApi'
+import { useLastViewedBreed } from './useLastViewedBreed'
 import './pages.css'
 
 type BreedDetailImageState =
@@ -114,6 +115,7 @@ export function HomePage() {
 
 export function BreedDetailPage() {
   const { breedName } = useParams<'breedName'>()
+  const { setLastViewedBreed } = useLastViewedBreed()
   const routeBreedName = breedName ?? ''
   const displayBreedName = routeBreedName
     ? titleCaseBreedName(routeBreedName)
@@ -132,6 +134,12 @@ export function BreedDetailPage() {
       : routeBreedName
         ? { breedName: routeBreedName, status: 'loading' }
         : { breedName: '', status: 'error' }
+
+  useEffect(() => {
+    if (breedName) {
+      setLastViewedBreed(breedName)
+    }
+  }, [breedName, setLastViewedBreed])
 
   useEffect(() => {
     if (!breedName) {
