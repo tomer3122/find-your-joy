@@ -1,0 +1,40 @@
+.breed-detail {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.breed-detail__favorite {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: #9f2948;
+  font: inherit;
+  cursor: pointer;
+}
+
+.breed-detail__favorite[aria-pressed='true'] {
+  color: #d12655;
+}
+
+.breed-detail__favorite:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.breed-detail__image {
+  display: block;
+  width: 100%;
+  max-width: 42rem;
+  aspect-ratio: 4 / 3;
+  margin: 1rem auto 0;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}

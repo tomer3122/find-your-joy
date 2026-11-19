@@ -4,6 +4,26 @@ import { fetchMainBreeds, type MainBreed } from './api/dogApi'
 import { AboutSection } from './components/AboutSection'
 import { BreedCard } from './components/BreedCard'
 import { useFavorites } from './useFavorites'
+import { fetchMainBreedImage } from './api/dogApi'
+import './pages.css'
+
+type BreedDetailImageState =
+  | { breedName: string; status: 'loading' }
+  | { breedName: string; status: 'loaded'; url: string }
+  | { breedName: string; status: 'error' }
+
+interface BreedDetailImageRequest {
+  breedName: string
+  promise: Promise<string>
+}
+
+function titleCaseBreedName(breedName: string): string {
+  return breedName
+    .split(/[\s_-]+/)
+    .filter(Boolean)
+    .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1).toLowerCase()}`)
+    .join(' ')
+}
 
 export function HomePage() {
   const [breeds, setBreeds] = useState<MainBreed[] | null>(null)
@@ -94,11 +114,94 @@ export function HomePage() {
 
 export function BreedDetailPage() {
   const { breedName } = useParams<'breedName'>()
+  const routeBreedName = breedName ?? ''
+  const displayBreedName = routeBreedName
+    ? titleCaseBreedName(routeBreedName)
+    : 'Breed details'
+  const { favoriteBreedNames, toggleFavorite } = useFavorites()
+  const isFavorite = breedName !== undefined && favoriteBreedNames.includes(breedName)
+  const [imageState, setImageState] = useState<BreedDetailImageState>(() =>
+    routeBreedName
+      ? { breedName: routeBreedName, status: 'loading' }
+      : { breedName: '', status: 'error' },
+  )
+  const requestRef = useRef<BreedDetailImageRequest | null>(null)
+  const visibleImageState: BreedDetailImageState =
+    imageState.breedName === routeBreedName
+      ? imageState
+      : routeBreedName
+        ? { breedName: routeBreedName, status: 'loading' }
+        : { breedName: '', status: 'error' }
+
+  useEffect(() => {
+    if (!breedName) {
+      return
+    }
+
+    let isActive = true
+    let request = requestRef.current
+
+    if (request === null || request.breedName !== breedName) {
+      request = { breedName, promise: fetchMainBreedImage(breedName) }
+      requestRef.current = request
+    }
+
+    void request.promise
+      .then((url) => {
+        if (isActive) {
+          setImageState({ breedName, status: 'loaded', url })
+        }
+      })
+      .catch(() => {
+        if (isActive) {
+          setImageState({ breedName, status: 'error' })
+        }
+      })
+
+    return () => {
+      isActive = false
+    }
+  }, [breedName])
 
   return (
-    <main>
-      <h1>Breed details</h1>
-      <p>Breed: {breedName ?? ''}</p>
+    <main className="breed-detail">
+      <section aria-labelledby="breed-detail-heading">
+        <h1 id="breed-detail-heading">{displayBreedName}</h1>
+        {breedName && (
+          <button
+            className="breed-detail__favorite"
+            type="button"
+            aria-label={
+              isFavorite
+                ? `Remove ${displayBreedName} from favorites`
+                : `Add ${displayBreedName} to favorites`
+            }
+            aria-pressed={isFavorite}
+            onClick={() => toggleFavorite(breedName)}
+          >
+            <span aria-hidden="true">{isFavorite ? '♥' : '♡'}</span>
+            <span>{isFavorite ? 'Saved' : 'Add to favorites'}</span>
+          </button>
+        )}
+        {visibleImageState.status === 'loading' && (
+          <p role="status">Loading an image for {displayBreedName}…</p>
+        )}
+        {visibleImageState.status === 'error' && (
+          <p role="alert">
+            {breedName
+              ? `Unable to load an image for ${displayBreedName}.`
+              : 'No breed was specified.'}
+          </p>
+        )}
+        {visibleImageState.status === 'loaded' && (
+          <img
+            className="breed-detail__image"
+            src={visibleImageState.url}
+            alt={`${displayBreedName} dog`}
+            onError={() => setImageState({ breedName: routeBreedName, status: 'error' })}
+          />
+        )}
+      </section>
     </main>
   )
 }

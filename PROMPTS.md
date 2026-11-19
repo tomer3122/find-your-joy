@@ -1108,3 +1108,18 @@
 **22:44 · tomer**
 
 > I verified that clicking a breed card opens its matching details route, for example Akita opens `/breed/akita`.
+
+## 2026-11-18
+
+**23:13 · codex**
+
+> Implement only the BreedDetailPage content.
+> 
+> Read the breed name from the existing /breed/:breedName route. Using the existing Dog CEO API module, fetch and display one image for that breed. Show a readable title-cased breed name, plus accessible loading and error states.
+> 
+> Add a favorite heart button on this page using the existing favorites hook/context. It must reflect the saved state and let the user add or remove this breed from favorites.
+> 
+> Keep the existing SiteHeader and routes unchanged. Do not modify BreedCard, FavoritesPage, search, tasks.md, or unrelated styles. Do not commit. Do not use any. Run npm.cmd run lint and summarize the change.
+**23:26 · tomer**
+
+> I verified that the Akita detail page shows its name, an image, and a working favorite button.
