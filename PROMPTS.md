@@ -1278,3 +1278,27 @@
 > Update only tasks.md.
 > 
 > Mark the checklist item for implementing the favorite heart toggle, Favorites page, and breed details as complete. Do not change any other checklist item, source file, README.md, or PRD.md. Do not commit. Summarize the exact line changed.
+
+**22:07 · codex**
+
+> Review the current responsive styling only. Do not modify any files.
+> 
+> Inspect the CSS and components for SiteHeader, AboutSection, BreedCard gallery, Favorites page, and BreedDetailPage. Identify concrete layout or accessibility issues that could appear on small screens (around 480px wide) and tablet screens (around 768px wide).
+> 
+> Give a short prioritized list and recommend only one minimal next styling change. Do not commit or update documentation.
+
+## 2026-11-20
+
+**11:41 · codex**
+
+> Implement only the custom Joy gallery entry.
+> 
+> Copy this image into the project as a local asset; do not move or delete the original:
+> C:\Users\tomer\OneDrive\Desktop\תקיית מדעי המחשב\מדעי המחשב\קורסים\סמסטר 5\פרונט אנד\WhatsApp Image 2026-11-09 at 21.23.14.jpeg
+> 
+> Add Joy as a typed custom gallery entry using that local image. It must be included in the main gallery’s alphabetical order under J, participate in the existing search for “Joy”, and use the same visual card and favorite behavior as API breeds.
+> 
+> Joy must also work in Favorites and in its detail route, displaying the local image rather than calling Dog CEO. Do not change unrelated features, tasks.md, README.md, or tests. Do not commit. Do not use any. Run npm.cmd run lint and summarize the changed files.
+**13:02 · tomer**
+
+> I verified that Joy appears in alphabetical order and search, and that her local image works in Favorites and her full details page.

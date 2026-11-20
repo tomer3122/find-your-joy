@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { fetchMainBreeds, type MainBreed } from './api/dogApi'
+import { fetchMainBreedImage, fetchMainBreeds, type MainBreed } from './api/dogApi'
 import { AboutSection } from './components/AboutSection'
 import { BreedCard } from './components/BreedCard'
+import { CUSTOM_BREEDS, findCustomBreed } from './customBreeds'
 import { useFavorites } from './useFavorites'
-import { fetchMainBreedImage } from './api/dogApi'
 import { useLastViewedBreed } from './useLastViewedBreed'
 import './pages.css'
 
@@ -33,8 +33,11 @@ export function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const requestRef = useRef<Promise<MainBreed[]> | null>(null)
 
+  const galleryBreeds = [...(breeds ?? []), ...CUSTOM_BREEDS].sort((left, right) =>
+    left.name.localeCompare(right.name, 'en', { sensitivity: 'base' }),
+  )
   const normalizedSearchQuery = searchQuery.trim().toLowerCase()
-  const filteredBreeds = (breeds ?? []).filter((breed) =>
+  const filteredBreeds = galleryBreeds.filter((breed) =>
     breed.name.toLowerCase().includes(normalizedSearchQuery),
   )
   const matchingBreedNames = new Set(filteredBreeds.map((breed) => breed.name))
@@ -96,11 +99,11 @@ export function HomePage() {
               <p role="status">
                 {normalizedSearchQuery
                   ? `${filteredBreeds.length} breeds match your search.`
-                  : `${breeds.length} breeds loaded.`}
+                  : `${galleryBreeds.length} breeds loaded.`}
               </p>
             )}
             <ul className="breed-gallery__grid">
-              {breeds.map((breed) => (
+              {galleryBreeds.map((breed) => (
                 <li key={breed.name} hidden={!matchingBreedNames.has(breed.name)}>
                   <BreedCard breedName={breed.name} />
                 </li>
@@ -117,6 +120,7 @@ export function BreedDetailPage() {
   const { breedName } = useParams<'breedName'>()
   const { setLastViewedBreed } = useLastViewedBreed()
   const routeBreedName = breedName ?? ''
+  const customBreed = findCustomBreed(routeBreedName)
   const displayBreedName = routeBreedName
     ? titleCaseBreedName(routeBreedName)
     : 'Breed details'
@@ -129,7 +133,11 @@ export function BreedDetailPage() {
   )
   const requestRef = useRef<BreedDetailImageRequest | null>(null)
   const visibleImageState: BreedDetailImageState =
-    imageState.breedName === routeBreedName
+    customBreed && imageState.breedName === routeBreedName && imageState.status === 'error'
+      ? imageState
+      : customBreed
+        ? { breedName: routeBreedName, status: 'loaded', url: customBreed.image }
+        : imageState.breedName === routeBreedName
       ? imageState
       : routeBreedName
         ? { breedName: routeBreedName, status: 'loading' }
@@ -142,7 +150,7 @@ export function BreedDetailPage() {
   }, [breedName, setLastViewedBreed])
 
   useEffect(() => {
-    if (!breedName) {
+    if (!breedName || customBreed) {
       return
     }
 
@@ -169,7 +177,7 @@ export function BreedDetailPage() {
     return () => {
       isActive = false
     }
-  }, [breedName])
+  }, [breedName, customBreed])
 
   return (
     <main className="breed-detail">

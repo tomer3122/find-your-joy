@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchMainBreedImage } from '../api/dogApi'
+import { findCustomBreed } from '../customBreeds'
 import { useFavorites } from '../useFavorites'
 import './BreedCard.css'
 
@@ -21,12 +22,23 @@ interface ImageRequest {
 export function BreedCard({ breedName }: BreedCardProps) {
   const { favoriteBreedNames, toggleFavorite } = useFavorites()
   const isFavorite = favoriteBreedNames.includes(breedName)
+  const customBreed = findCustomBreed(breedName)
   const [imageState, setImageState] = useState<ImageState>({ breedName, status: 'loading' })
   const requestRef = useRef<ImageRequest | null>(null)
   const visibleImageState: ImageState =
-    imageState.breedName === breedName ? imageState : { breedName, status: 'loading' }
+    customBreed && imageState.breedName === breedName && imageState.status === 'error'
+      ? imageState
+      : customBreed
+        ? { breedName, status: 'loaded', url: customBreed.image }
+        : imageState.breedName === breedName
+          ? imageState
+          : { breedName, status: 'loading' }
 
   useEffect(() => {
+    if (customBreed) {
+      return
+    }
+
     let isActive = true
     let request = requestRef.current
 
@@ -50,7 +62,7 @@ export function BreedCard({ breedName }: BreedCardProps) {
     return () => {
       isActive = false
     }
-  }, [breedName])
+  }, [breedName, customBreed])
 
   return (
     <article className="breed-card" aria-labelledby={`breed-card-${breedName}`}>
