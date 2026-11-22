@@ -7,6 +7,6 @@
 - [x] Build the site logo, short About section, alphabetically sorted image-first breed gallery, and breed search.
 - [x] Implement the favorite heart toggle, favorites page, and breed details.
 - [ ] Style the gallery with the fixed `#FFF7ED` background, responsive layout, and accessible interactions.
-- [ ] Add Vitest and write at least five meaningful tests for confirmed features.
+- [x] Add Vitest and write at least five meaningful tests for confirmed features.
 - [ ] Update `README.md` for Find Your Joy.
 - [ ] Run final validation: tests, lint, and production build.
