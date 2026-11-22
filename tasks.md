@@ -8,5 +8,5 @@
 - [x] Implement the favorite heart toggle, favorites page, and breed details.
 - [x] Style the gallery with the fixed `#FFF7ED` background, responsive layout, and accessible interactions.
 - [x] Add Vitest and write at least five meaningful tests for confirmed features.
-- [ ] Update `README.md` for Find Your Joy.
+- [x] Update `README.md` for Find Your Joy.
 - [ ] Run final validation: tests, lint, and production build.
