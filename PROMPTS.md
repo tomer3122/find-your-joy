@@ -1465,3 +1465,16 @@
 **13:19 · tomer**
 
 > I ran the second Vitest case and confirmed that the app reports a clear error when Dog CEO returns a failed response.
+
+## 2026-11-22
+
+**13:21 · codex**
+
+> Add only one third meaningful Vitest test to src/api/dogApi.test.ts.
+> 
+> Keep the two existing tests unchanged. Add a typed test that mocks fetch rejecting with a network error, then verifies that the existing main-breeds fetch function rejects with its current clear network-error behavior. Do not modify the API implementation, app code, configuration, package files, documentation, or tasks.md. Do not use any. Do not commit.
+> 
+> Run npm.cmd run test:run and npm.cmd run lint, then explain what the new test proves.
+**13:25 · tomer**
+
+> I ran the third Vitest case and confirmed that a network failure produces a clear error.

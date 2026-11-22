@@ -42,4 +42,14 @@ describe('fetchMainBreeds', () => {
       'Dog CEO API returned error while fetching the breed list.',
     )
   })
+
+  it('rejects with a clear error when the network request fails', async () => {
+    const networkError = new TypeError('Failed to fetch')
+    const fetchMock = vi.fn<typeof fetch>().mockRejectedValue(networkError)
+    vi.stubGlobal('fetch', fetchMock)
+
+    await expect(fetchMainBreeds()).rejects.toThrow(
+      'Network error while fetching the breed list from Dog CEO API. Failed to fetch',
+    )
+  })
 })
