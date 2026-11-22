@@ -1521,3 +1521,21 @@
 > Update only tasks.md.
 > 
 > Mark the checklist item about styling the gallery with the fixed #FFF7ED background, responsive layout, and accessible interactions as complete. Do not change any other checklist item, source file, README.md, or PRD.md. Do not commit. Summarize the exact line changed.
+
+**14:10 · codex**
+
+> Update only README.md for the completed Find Your Joy project.
+> 
+> Replace the starter README with concise English documentation that accurately describes:
+> - the app purpose;
+> - implemented features, including alphabetically sorted gallery, search, Favorites stored in localStorage, breed detail pages, Last viewed breed, and the custom Joy entry;
+> - React, Vite, TypeScript, React Router, Vitest, and Dog CEO API;
+> - installation and run commands: install, dev, lint, test:run, and build;
+> - the main routes;
+> - a brief accessibility/responsiveness note;
+> - attribution/link to the public Dog CEO API.
+> 
+> Do not claim that the site is deployed. Do not change source code, tasks.md, PRD.md, package files, or tests. Do not commit. Show a concise summary of the README sections you wrote.
+**14:15 · tomer**
+
+> I reviewed the README and confirmed that it accurately documents Find Your Joy, its features, and its development commands.

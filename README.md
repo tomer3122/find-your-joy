@@ -1,75 +1,40 @@
-# React + TypeScript + Vite
+# Find Your Joy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Find Your Joy is a dog-breed explorer for browsing breeds, viewing breed images, and saving favorites.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Browse the main dog breeds in alphabetical order in an image-first gallery.
+- Search breeds by name with a case-insensitive partial match.
+- Save and remove favorites; selections persist in browser `localStorage`.
+- Open breed detail pages with an image and favorite control.
+- Return to the last viewed breed from the header; the selection persists in `localStorage`.
+- Explore Joy, a custom gallery entry with a bundled local image that also works in search, favorites, and details.
 
-## React Compiler
+## Technology
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Built with React, TypeScript, Vite, and React Router. Vitest runs the project tests. Main breed data and random breed images come from the [Dog CEO API](https://dog.ceo/dog-api/).
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm install
+npm run dev
+npm run lint
+npm run test:run
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Routes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `/` — About section, searchable breed gallery, and Joy.
+- `/favorites` — saved breeds.
+- `/breed/:breedName` — details and image for a breed.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Accessibility and responsive layout
 
-```
+The interface uses semantic page structure, labeled navigation and search, accessible favorite controls, and announced loading, error, and empty states. The breed gallery adapts to available screen width.
+
+## API attribution
+
+Breed data and API-provided dog images are provided by the public [Dog CEO Dog API](https://dog.ceo/dog-api/).
