@@ -1452,3 +1452,16 @@
 **13:13 · tomer**
 
 > I ran the first Vitest API test. It uses a mocked Dog CEO response and verifies that breed data is sorted correctly.
+
+## 2026-11-22
+
+**13:16 · codex**
+
+> Add only one second meaningful Vitest test to src/api/dogApi.test.ts.
+> 
+> Keep the existing successful sorting test unchanged. Add a typed test that mocks an unsuccessful Dog CEO API response and verifies that the existing main-breeds fetch function rejects with its clear error behavior. Do not modify the API implementation, app code, configuration, package files, documentation, or tasks.md. Do not use any. Do not commit.
+> 
+> Run npm.cmd run test:run and npm.cmd run lint, then explain in one sentence what the new test proves.
+**13:19 · tomer**
+
+> I ran the second Vitest case and confirmed that the app reports a clear error when Dog CEO returns a failed response.
