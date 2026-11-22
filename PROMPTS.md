@@ -1478,3 +1478,18 @@
 **13:25 · tomer**
 
 > I ran the third Vitest case and confirmed that a network failure produces a clear error.
+
+## 2026-11-22
+
+**13:43 · codex**
+
+> Implement only the browser-like test setup needed for one Favorites localStorage test.
+> 
+> Install the minimal compatible dev dependencies needed to test React with a jsdom environment, and configure Vitest only as needed while keeping the existing API tests working.
+> 
+> Add one typed test for FavoritesProvider/useFavorites. Use a tiny test-only React probe component, toggle “akita” as a favorite, and verify that the favorite state is saved to localStorage. Do not use any.
+> 
+> Do not change production app behavior, app components, pages, styles, tasks.md, README.md, or PRD.md. Do not commit. Run npm.cmd run test:run and npm.cmd run lint, then explain what the new test proves.
+**13:55 · tomer**
+
+> I ran the fourth Vitest case. It uses a browser-like test environment to verify that choosing Akita as a favorite is saved in localStorage.
