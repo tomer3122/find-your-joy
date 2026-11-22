@@ -1547,3 +1547,21 @@
 > Update only tasks.md.
 > 
 > Mark the checklist item for updating README.md for Find Your Joy as complete. Do not change any other checklist item, source file, PRD.md, or README.md. Do not commit. Summarize the exact line changed.
+
+**14:18 · codex**
+
+> Run final validation only. Do not edit, create, delete, stage, or commit any files.
+> 
+> Run these commands in order:
+> 1. npm.cmd run test:run
+> 2. npm.cmd run lint
+> 3. npm.cmd run build
+> 4. git status --short
+> 
+> Report the pass/fail result of each command, the number of passing tests, and list any pre-existing untracked file separately without deleting or staging it.
+
+**14:21 · codex**
+
+> Update only tasks.md.
+> 
+> Mark the checklist item for final validation (tests, lint, and production build) as complete. Do not change any other checklist item, source file, README.md, or PRD.md. Do not commit. Summarize the exact line changed.
